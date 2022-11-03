@@ -1,4 +1,4 @@
-# Day 02 – Piscine .NET
+# Day 02 – .NET Boot camp
 ### OOP
 
 # Contents
