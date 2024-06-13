@@ -4,7 +4,7 @@ public struct ExchangeSum {
 
 	public override string ToString()
 	{
-		return ($"{Amount:N2} {Currency}")
+		return ($"{Amount:N2} {Currency}");
 	}
 	
 	static public bool TryParse(string input, out ExchangeSum exchange) {

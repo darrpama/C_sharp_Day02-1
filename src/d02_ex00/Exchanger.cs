@@ -6,13 +6,30 @@ public class Exchanger {
 		var files = Directory.GetFiles(foldername, "*.txt");
 		foreach (var file in files) {
 			var from = Path.GetFileNameWithoutExtension(file);
-			var lines = file.ReadAllLines(file);
+			var lines = File.ReadAllLines(file);
 			foreach (var line in lines) {
-				var parts = line.split(':');
+				var parts = line.Split(':');
 				var to = parts[0];
-				decimal.TryParse(parts[1], new CultureInfo("en-GB"), out var rate);
+				decimal.TryParse(parts[1], new CultureInfo("fr-Fr"), out var rate);
 				ExchangeRate exchangeRate = new ExchangeRate { From = from, To = to, Rate = rate };
-				rates.add($"{from}-{to}", exchangeRate);
+				rates.Add($"{from}-{to}", exchangeRate);
+			}
+		}
+	}
+
+	public IEnumerable<ExchangeSum> Convert(ExchangeSum sum)
+	{
+		foreach (var exchangeRate in rates.Values)
+		{
+			if (exchangeRate.From == sum.Currency)
+			{
+				Console.WriteLine(sum.Amount * exchangeRate.Rate);
+				Console.WriteLine(exchangeRate.To);
+				yield return new ExchangeSum
+				{
+					Amount = sum.Amount * exchangeRate.Rate,
+					Currency = exchangeRate.To
+				};
 			}
 		}
 	}
