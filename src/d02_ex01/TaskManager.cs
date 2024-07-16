@@ -180,7 +180,8 @@ public class TaskManager
                 Console.WriteLine("\bHigh");
                 return TaskPriority.High;
             default:
-                return TaskPriority.Normal;
+                Console.WriteLine("\bInput error. Check the input data and repeat the request.");
+                return PriorityEntry();
         }
     }
 }
