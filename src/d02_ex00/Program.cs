@@ -1,4 +1,3 @@
-
 try
 {
     if (args.Length != 2)
@@ -13,6 +12,7 @@ try
     {
         throw new ArgumentException("Input error. Check the input data and repeat the request.");
     }
+
     ExchangeSum.TryParse(sum, out var inputSum);
 
     Console.WriteLine($"Amount in the original currency: {inputSum}");
