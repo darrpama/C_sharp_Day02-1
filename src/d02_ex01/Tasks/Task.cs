@@ -24,9 +24,9 @@ public class Task
 
         } else {
             answer = $"- {Title}\n" +
-                    $"[{Type}] [{State}]\n" +
-                    $"Priority: {Priority}, Due till {DueDate}\n" +
-                    $"{Summary}";
+                     $"[{Type}] [{State}]\n" +
+                     $"Priority: {Priority}, Due till {DueDate}\n" +
+                     $"{Summary}";
         }
         return answer;
     }

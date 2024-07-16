@@ -4,11 +4,11 @@ try
     while (true)
     {
         Console.WriteLine("TASK MANAGER MENU:");
-        Console.WriteLine("`add` - added new task");
-        Console.WriteLine("`list` - print all tasks");
-        Console.WriteLine("`done` - mark task as complited");
-        Console.WriteLine("`wontdo` - mark task as irrelevant");
-        Console.WriteLine("`quit` or `q` - close program\n");
+        Console.WriteLine("add - added new task");
+        Console.WriteLine("list - print all tasks");
+        Console.WriteLine("done - mark task as complited");
+        Console.WriteLine("wontdo - mark task as irrelevant");
+        Console.WriteLine("quit or q - close program\n");
         switch (Console.ReadLine())
         {
             case "add":
@@ -31,6 +31,7 @@ try
                 break;
             default:
                 Console.WriteLine("Input error. Check the input data and repeat the request.");
+                break;
         }
         Console.WriteLine();
     }
