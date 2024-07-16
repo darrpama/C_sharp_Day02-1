@@ -1,6 +1,7 @@
 try
 {
     TaskManager taskManager = new TaskManager();
+    Console.Clear();
     while (true)
     {
         Console.WriteLine("TASK MANAGER MENU:");
@@ -8,7 +9,7 @@ try
         Console.WriteLine("list - print all tasks");
         Console.WriteLine("done - mark task as complited");
         Console.WriteLine("wontdo - mark task as irrelevant");
-        Console.WriteLine("quit or q - close program\n");
+        Console.WriteLine("quit or q - close program");
         switch (Console.ReadLine())
         {
             case "add":

@@ -1,5 +1,3 @@
-using System.Data;
-using System.Diagnostics;
 
 public class TaskManager
 {
@@ -7,6 +5,7 @@ public class TaskManager
 
     public void AddTask()
     {
+        Console.Clear();
         string title = TitleEntry();
         TaskType type = TypeEntry();
         DateTime? dueDate = DueDateEntry();
@@ -17,10 +16,12 @@ public class TaskManager
         Task task = new Task(title, type, dueDate, summary, priority);
 
         tasks_.Add(task);
+        Console.Clear();
     }
 
     public void PrintList()
     {
+        Console.Clear();
         if (tasks_.Count == 0)
         {
             Console.WriteLine("The task list is still empty.");
@@ -30,55 +31,50 @@ public class TaskManager
             foreach (var task in tasks_)
             {
                 Console.WriteLine(task.ToString());
+                Console.WriteLine();
             }
         }
     }
 
     public void TaskDone(string? title)
     {
+        Console.Clear();
         if (string.IsNullOrEmpty(title))
         {
-            Console.WriteLine("Input error. The task with this title was not found");
+            Console.WriteLine("Input error. Check the input data and repeat the request.");
             return;
+        }
+
+        var task = findTask(title);
+        if (task != null)
+        {
+            task.MarkAsCompleted();
         }
         else
         {
-            var task = findTask(title);
-            if (task != null)
-            {
-                if (task.MarkAsCompleted())
-                {
-                    Console.WriteLine($"The task [{title}] is completed!");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Input error. The task with this title was not found");
-            }
+            Console.WriteLine("Input error. The task with this title was not found");
         }
     }
 
     public void TaskIrrelevant(string? title)
     {
+        Console.Clear();
         if (string.IsNullOrEmpty(title))
         {
-            Console.WriteLine("Input error. The task with this title was not found");
+            Console.WriteLine("Input error. Check the input data and repeat the request.");
             return;
+        }
+        var task = findTask(title);
+        if (task != null)
+        {
+            if (task.MarkAsIrrelevant())
+            {
+                Console.WriteLine($"The task [{title}] is no longer relevant!");
+            }
         }
         else
         {
-            var task = findTask(title);
-            if (task != null)
-            {
-                if (task.MarkAsIrrelevant())
-                {
-                    Console.WriteLine($"The task [{title}] is no longer relevant!");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Input error. The task with this title was not found");
-            }
+            Console.WriteLine("Input error. The task with this title was not found");
         }
     }
 
@@ -105,13 +101,13 @@ public class TaskManager
         return title;
     }
 
-    private string? SummaryEntry()
+    private string SummaryEntry()
     {
         Console.WriteLine("Enter a description");
         var summary = Console.ReadLine();
         if (string.IsNullOrEmpty(summary))
         {
-            return null;
+            return "";
         }
         return summary;
     }
@@ -143,7 +139,7 @@ public class TaskManager
 
     private TaskType TypeEntry()
     {
-        Console.WriteLine("Choose task category:");
+        Console.WriteLine("Enter the type");
         Console.WriteLine("1 - Work");
         Console.WriteLine("2 - Study");
         Console.WriteLine("3 - Personal");
@@ -167,7 +163,7 @@ public class TaskManager
 
     private TaskPriority PriorityEntry()
     {
-        Console.WriteLine("Choose task priority:");
+        Console.WriteLine("Assign the prority");
         Console.WriteLine("1 - Low");
         Console.WriteLine("2 - Normal");
         Console.WriteLine("3 - High");

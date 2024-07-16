@@ -31,14 +31,12 @@ public class Task
         return answer;
     }
 
-    public bool MarkAsCompleted()
+    public void MarkAsCompleted()
     {
-        bool answer = false;
         if (State == TaskState.New) {
             State = TaskState.Completed;
-            answer = true;
+            Console.WriteLine($"The task [{Title}] is completed!");
         }
-        return answer;
     }
 
     public bool MarkAsIrrelevant()
